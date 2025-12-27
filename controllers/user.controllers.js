@@ -9,6 +9,7 @@ import ErrorHandler from "../middlewares/error.js";
 
 export const userRegister = async (req, res, next) => {
     try {
+        
         const { email, password } = req.body;
         const existingUser = await user.findOne({ email: email });
         if (existingUser) {
