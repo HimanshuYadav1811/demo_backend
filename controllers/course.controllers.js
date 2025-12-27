@@ -55,7 +55,6 @@ export const handleGetAllCourses = async (req, res, next) => {
     }
 };
 
-
 export const updateFeaturedCourse = async(req, res, next) => {
     try {
         const { id } = req.params;  

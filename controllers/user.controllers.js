@@ -9,9 +9,10 @@ import ErrorHandler from "../middlewares/error.js";
 
 export const userRegister = async (req, res, next) => {
     try {
-        
+
         const { email, password } = req.body;
         const existingUser = await user.findOne({ email: email });
+
         if (existingUser) {
             return next(new ErrorHandler("User already exists", 400));
         }
@@ -44,6 +45,12 @@ export const getAllUsers = async (req, res, next) => {
         return next(new ErrorHandler("Failed to fetch users", 500));
     }
 
+}
+export const getUserDetails = async (req, res, next) => {
+    const { id } = req.params;
+    const response = await user.findById(id);
+    if (!response) return next(new ErrorHandler("User not found", 404));
+    res.json({ data: response, message: "User details fetched", success: true });
 }
 
 
